@@ -1,0 +1,107 @@
+/* Styling for the navigation bar and dropdown */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover :not(#main), .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  /*min-width: 160px;*/
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 4px 8px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#main {
+  font-size: 20px;
+  padding: 10px 15px;
+}
+
+/* Styling for the content */
+body {
+  font-family: "Quantico";
+  text-align: center;
+}
+header {
+  text-align: center;
+}
+h2 {
+  text-align: center;
+  font-size: 1.2em;
+  border-top: 2px dashed yellow;
+  border-bottom: 2px dashed yellow;
+}
+input[type=number] {
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  background-color: #DADADA;
+  font-size: 1.2em;
+}
+input[type=submit] {
+  width: 200px;
+  font-size: 2em;
+}
+#calculator {
+  border: 1px solid #dadada;
+  border-radius: 4px;
+  padding: 4px;
+  width: 50%;
+  padding-left: 25%;
+  font-size: .85em;
+}
+.input-area {
+  background-color: #42FF8C;
+  padding: 8px;
+  margin: 8px;
+  text-align: center;
+  border-radius: 8px;
+}
+.operator-choices {
+  text-align: left;
+}
+.output-area {
+  background-color: #333333;
+  color: #FFFFFF;
+  padding: 8px;
+  margin: 8px;
+  font-size: 1.5em;
+}

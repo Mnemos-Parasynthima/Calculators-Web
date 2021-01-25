@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Quadratic Calculator</title>
+    <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet'>
+    <link href="../navstyling.css" rel="stylesheet" type="text/css">
+  </head>
+	<body>
+    <ul>
+      <li id="main"><a href="../Calculators Main Site.html">Calculators</a></li>
+      <li id="super"><a href="../Super-Calculator.html">Super Calculator</a></li>
+      <li class="dropdown">
+        <a href="" class="dropbtn">Math</a>
+        <div class="dropdown-content">
+          <a href="Pythagorean.html">Pythagorean Theorem</a> <br>
+          <a href="Quadratic.html">Quadratic Equation</a> <br>
+          <a href="Midpoint.html">Midpoint Formula</a> <br>
+          <a href="Distance.html">Distance Formula</a> <br>
+          <a href="Slope.html">Slope Formula</a> <br>
+          <a href="RadianDegree.html">Degree-Radian</a>
+          <a href="../comingsoon.html">Laws of Sines</a> <br>
+          <a href="../comingsoon.html">Laws of Cosines</a> <br>
+          <a href="../comingsoon.html">Functions</a> <br>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <a href="" class="dropbtn">Science</a>
+        <div class="dropdown-content">
+
+        </div>
+      </li>
+    </ul>
+		<div id="calculator">
+			<header>
+				<h1>Quadratic Formula Calculator</h1>
+        <p>The Quadratic Formula calculator shows the roots of a quadratic equation.</p>
+        <p>(-b &#177; &radic;(b<sup>2</sup> - 4ac)) / 2a</p>
+        <p>ax<sup>2</sup> + bx - c</p>
+        <p>Where a &#8800 0</p>
+			</header>
+			<div class="input-area">
+		  	<h2>Step 1: Enter A</h2>
+				<input type="number" id="valueA" value="2">
+			</div>
+					
+			<div class="input-area">
+		  	<h2>Step 2: Enter B</h2>
+			  <input type="number" id="valueB" value="-4">
+      </div>
+      
+			<div class="input-area">
+		  	<h2>Step 3: Enter C</h2>
+			  <input type="number" id="valueC" value="-30">
+			</div>
+			
+			<div class="input-area">
+			  <h2>Step 4: Click the Button to receive roots</h2>
+			  <input type="submit" id="submit" value="=">
+			</div>
+      <hr>
+      
+			<div class="output-area">
+        <h2>Output</h2>
+        
+			  <h3>Operation</h3>
+        <span id="final-operation"></span>			
+        
+			  <h3>Return Value:</h3>
+			  <span id="result"></span>
+      </div>
+    </div>
+    
+		<script>
+		//when the button is clicked
+		document.getElementById("submit").addEventListener("click",calculateIt);
+
+		function calculateIt() {
+
+			//create some variables
+      let a, b, c, discr, rootP, rootN;
+			
+			//get the values
+			a = document.getElementById("valueA").value;
+      b = document.getElementById("valueB").value;
+      c = document.getElementById("valueC").value;
+
+      a = parseInt(a);
+      b = parseInt(b);
+      c = parseInt(c);
+
+      if (a === 0) {
+        alert("Error: a cannot be 0");
+
+        console.log("Error: a = 0");
+
+        //display the operation
+        document.getElementById("final-operation").innerHTML = "a = 0";
+
+        //display the return value
+        document.getElementById("result").innerHTML = "Error: a cannot be 0";
+      } else if (a !== 0) {
+        //calculates roots
+        discr1 = Math.pow(b, 2);
+        discr2 = 4 * a * c;
+        discr = discr1 - discr2; //b^2 - 4ac
+
+        if (discr > 0) {
+          sqrtDiscr = Math.sqrt(discr);
+          numP = -b + sqrtDiscr;
+          numN = -b - sqrtDiscr;
+          denum = 2*a;
+          rootP = numP / denum;
+          rootN = numN / denum;
+
+          console.log(`Discrim.: ${discr}; Sqrd discrim.: ${sqrtDiscr}; Num.: ${numP}, ${numN}; Roots: ${rootP}, ${rootN}`);
+
+          //display the operation
+          document.getElementById("final-operation").innerHTML = `
+            (-${b} &#177; &radic;((${b}<sup>2</sup>) - 4*${a}*${c})) / 2*${a} <br>
+            (-${b} &#177; &radic;(${discr1} - ${discr2}) / ${denum} <br>
+            (-${b} &#177; &radic;(${discr}) / ${denum} <br>
+            (-${b} &#177; ${sqrtDiscr}) / ${denum} <br>
+            [(-${b} + ${sqrtDiscr}) / ${denum} <br>
+            ${numP} / 2${a}] <br>
+            [(-${b} - ${sqrtDiscr}) / 2${denum} <br>
+            ${numN} / 2${a}] <br>
+          `;
+
+        
+          //display the return value
+          document.getElementById("result").innerHTML = `${rootP}, ${rootN} <br> 
+            Two real solutions <br> 
+            Discriminant: ${discr}
+          `;
+
+        } else if (discr < 0) {
+          console.log("Discrimant < 0");
+
+          //display the operation
+          document.getElementById("final-operation").innerHTML = `
+            (${b}<sup>2</sup>) - 4*${a}*${c}) <br>
+            ${discr1} - ${discr2}
+          `;
+        
+          //display the return value
+          document.getElementById("result").innerHTML = `${discr}, No real solutions`;
+          
+        } else if (discr === 0) {
+          sqrtDiscr = Math.sqrt(discr);
+          num = -b + sqrtDiscr;
+          denum = 2*a;
+          root = num / denum;
+
+          console.log(`Discrim.: 0; Sqrd discrim.: ${sqrtDiscr}; Num.: ${num}; Roots: ${root}`);
+
+          // display the operation
+          document.getElementById("final-operation").innerHTML = `
+            (-${b} &#177; &radic;((${b}<sup>2</sup>) - 4*${a}*${c})) / 2*${a} <br>
+            (-${b} &#177; &radic;(${discr1} - ${discr2}) / ${denum} <br>
+            (-${b} &#177; &radic;(${discr}) / ${denum} <br>
+            (-${b} &#177; ${sqrtDiscr}) / ${denum} <br>
+            ${num} / ${denum} <br>
+          `;
+
+          // display the return value
+          document.getElementById("result").innerHTML = `${root} <br>
+            One real solution <br>
+            Discriminant: ${discr}
+          `;
+        }
+      }
+		};
+		</script>
+	</body>
+</html>

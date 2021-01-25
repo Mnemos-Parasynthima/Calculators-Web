@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Distance Calculator</title>
+    <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet'>
+    <link href="../navstyling.css" rel="stylesheet" type="text/css">
+  </head>
+	<body>
+    <ul>
+      <li id="main"><a href="../Calculators Main Site.html">Calculators</a></li>
+      <li id="super"><a href="../Super-Calculator.html">Super Calculator</a></li>
+      <li class="dropdown">
+        <a href="" class="dropbtn">Math</a>
+        <div class="dropdown-content">
+          <a href="Pythagorean.html">Pythagorean Theorem</a> <br>
+          <a href="Quadratic.html">Quadratic Equation</a> <br>
+          <a href="Midpoint.html">Midpoint Formula</a> <br>
+          <a href="Distance.html">Distance Formula</a> <br>
+          <a href="Slope.html">Slope Formula</a> <br>
+          <a href="RadianDegree.html">Degree-Radian</a>
+          <a href="../comingsoon.html">Laws of Sines</a> <br>
+          <a href="../comingsoon.html">Laws of Cosines</a> <br>
+          <a href="../comingsoon.html">Functions</a> <br>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <a href="" class="dropbtn">Science</a>
+        <div class="dropdown-content">
+
+        </div>
+      </li>
+    </ul>
+
+		<div id="calculator">
+			<header>
+				<h1>Distance Formula Calculator</h1>
+        <p>The Distance Formula calculator shows the distance between two points.</p>
+        <p>d = &radic;((x<sub>2</sub> - x<sub>1</sub>)<sup>2</sup> + (y<sub>2</sub> - y<sub>1</sub>)<sup>2</sup>)</p>
+			</header>
+			<div class="input-area">
+		  	<h2>Step 1: Enter x<sub>1</sub></h2>
+				<input type="number" id="x1" value="2">
+			</div>
+					
+			<div class="input-area">
+		  	<h2>Step 2: Enter y<sub>1</sub></h2>
+				<input type="number" id="y1" value="5">
+			</div>
+      
+			<div class="input-area">
+		  	<h2>Step 3: Enter x<sub>2</sub></h2>
+				<input type="number" id="x2" value="7">
+      </div>
+      
+			<div class="input-area">
+		  	<h2>Step 4: Enter y<sub>2</sub></h2>
+				<input type="number" id="y2" value="0">
+			</div>
+			
+			<div class="input-area">
+			  <h2>Step 5: Click the Button to receive midpoint</h2>
+			  <input type="submit" id="submit" value="=">
+			</div>
+      <hr>
+      
+			<div class="output-area">
+        <h2>Output</h2>
+        
+			  <h3>Operation</h3>
+        <span id="final-operation"></span>			
+        
+			  <h3>Return Value:</h3>
+			  <span id="result"></span>
+      </div>
+    </div>
+    
+		<script>
+		//when the button is clicked
+		document.getElementById("submit").addEventListener("click",calculateIt);
+
+		function calculateIt() {
+
+			//create some variables
+      let xO, yO, xT, yT, dx, dy, dx2, dy2, add, d;
+			
+      //get the values
+      xO = document.getElementById("x1").value;
+      yO = document.getElementById("y1").value;
+      xT = document.getElementById("x2").value;
+      yT = document.getElementById("y2").value;
+      
+      
+      //calculates distance
+      dx = parseInt(xT) - parseInt(xO); // Change of x
+      dy = parseInt(yT) - parseInt(yO); //Change of y
+      dx2 = Math.pow(dx, 2); // Change of x squared
+      dy2 = Math.pow(dy, 2); // Change of y squared
+      add = dx2 + dy2; // Addition within square root
+      d = Math.sqrt(add); //Distance
+
+      console.log(`x1: ${xO}; x2: ${xT}; y1: ${yO}; y2: ${yT}; 
+        Delta x: ${dx}; Delta y: ${dy}; Squared dx: ${dx2}, Squared dy: ${dy2}
+        Addition: ${add}; Distance: ${d}`
+      );
+
+			//display the operation
+      document.getElementById("final-operation").innerHTML = `
+        &radic;((${xT} - ${xO})<sup>2</sup> + (${yT} - ${yO})<sup>2</sup>) <br>
+        &radic;((${dx})<sup>2</sup> + (${dy})<sup>2</sup>) <br>
+        &radic;(${dx2} + ${dy2}) <br>
+        &radic;(${add}) <br>
+      `;
+			
+			//display the return value
+			document.getElementById("result").innerHTML = d;
+		};
+		</script>
+	</body>
+</html>
