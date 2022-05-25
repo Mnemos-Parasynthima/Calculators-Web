@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Pythagorean Theorem Calculator</title>
+    <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet'>
+    <link href="../navstyling.css" rel="stylesheet" type="text/css">
+  </head>
+	<body>
+    <ul>
+      <li id="main"><a href="../Calculators Main Site.html">Calculators</a></li>
+      <li id="super"><a href="../Super-Calculator.html">Super Calculator</a></li>
+      <li class="dropdown">
+        <a href="" class="dropbtn">Math</a>
+        <div class="dropdown-content">
+          <a href="./Pythagorean.html">Pythagorean Theorem</a>
+          <a href="./Quadratic.html">Quadratic Equation</a>
+          <a href="./Midpoint.html">Midpoint Formula</a>
+          <a href="./Distance.html">Distance Formula</a>
+          <a href="./Slope.html">Slope Formula</a>
+          <a href="./RadianDegree.html">Degree-Radian</a>
+          <a href="./PercentChange.html">Percent Change</a>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <a href="" class="dropbtn">Science</a>
+        <div class="dropdown-content">
+          <a href="../Science/SolutePot.html">Solute Potential</a>
+        </div>
+      </li>
+    </ul>
+		<div id="calculator">
+			<header>
+				<h1>Pythagorean Theorem Calculator</h1>
+        <p>The Pythagorean Theorem calculator shows the missing side when given two sides.</p>
+        <p>a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup></p>
+        <p><i>Enter 0 for the side missing</i></p>
+			</header>
+			<div class="input-area">
+		  	<h2>Step 1: Enter A</h2>
+				<input type="number" id="valueA" value="3">
+			</div>
+					
+			<div class="input-area">
+		  	<h2>Step 2: Enter B</h2>
+			  <input type="number" id="valueB" value="4">
+      </div>
+      
+      <div class="input-area">
+        <h2>Step 3: Enter C</h2>
+        <input type="number" id="valueC" value="0">
+      </div>
+			
+			<div class="input-area">
+			  <h2>Step 3: Click the Button to receive missing side</h2>
+			  <input type="submit" id="submit" value="=">
+			</div>
+      <hr>
+      
+			<div class="output-area">
+        <h2>Output</h2>
+        
+			  <h3>Operation</h3>
+        <span id="final-operation"></span>			
+        
+			  <h3>Return Value:</h3>
+			  <span id="result"></span>
+      </div>
+    </div>
+    
+		<script>
+		//when the button is clicked
+		document.getElementById("submit").addEventListener("click",calculateIt);
+
+
+		function calculateIt() {
+
+			//create some variables
+      let a, b, c, powA, powB, powC, add, sub;
+			
+			//get the values
+			a = document.getElementById("valueA").value;
+      b = document.getElementById("valueB").value;
+      c = document.getElementById("valueC").value;
+
+      a = parseInt(a);
+      b = parseInt(b);
+      c = parseInt(c);
+
+      if (a == 0 && b != 0 && c != 0) {
+        console.log("Entered if not a");
+        //calculates a
+        powB = Math.pow(b, 2);
+        powC = Math.pow(c, 2);
+        sub = powC - powB;
+        a = Math.sqrt(sub);
+        console.log(`Power of B: ${powB}; Power of C: ${powC}; Subtraction: ${sub}; c: ${c}`);
+
+        //display the operation
+        document.getElementById("final-operation").innerHTML = `
+          &radic;(${c}<sup>2</sup> - ${b}<sup>2</sup>) <br>
+          &radic;(${sub})
+        `;
+
+        //display the return value
+        if (isNaN(a)) {
+          alert("Square root cannot be taken rationally")
+          document.getElementById("result").innerHTML = `&radic;${sub}`;
+        } else {
+          document.getElementById("result").innerHTML = a;
+        }
+
+      } else if (b == 0 && c != 0 && a != 0) {
+        console.log("Entered if not b");
+        //calculates b
+        powA = Math.pow(a, 2);
+        powC = Math.pow(c, 2);
+        sub = powC - powA;
+        a = Math.sqrt(sub);
+        console.log(`Power of A: ${powA}; Power of C: ${powC}; Subtraction: ${sub}; c: ${b}`);
+
+        //display the operation
+        document.getElementById("final-operation").innerHTML = `
+          &radic;(${c}<sup>2</sup> - ${a}<sup>2</sup>) <br>
+          &radic;(${sub})
+        `;
+
+        //display the return value
+        if (isNaN(b)) {
+          alert("Square root cannot be taken rationally")
+          document.getElementById("result").innerHTML = `&radic;${sub}`;
+        } else {
+          document.getElementById("result").innerHTML = b;
+        }
+        
+      } else if (c == 0 && a != 0 && b != 0) {
+        console.log("Entered if not c");
+        //calculates c
+        powA = Math.pow(a, 2);
+        powB = Math.pow(b, 2);
+        add = powA + powB;
+        c = Math.sqrt(add);
+        console.log(`Power of A: ${powA}; Power of B: ${powB}; Addition: ${add}; C: ${c}`);
+
+        //display the operation
+        document.getElementById("final-operation").innerHTML = `
+          &radic;(${a}<sup>2</sup> + ${b}<sup>2</sup>) <br>
+          &radic;(${add})
+        `;
+        
+        //display the return value
+        document.getElementById("result").innerHTML = c;
+      } else if (a == 0 && b == 0 || b == 0 && c == 0 || a == 0 && c == 0) {
+        alert("Some side cannot be 0!");
+      } else {
+        alert("Make sure to use 0 for the missing side!");
+      }
+		};
+		</script>
+	</body>
+</html>

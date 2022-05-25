@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Slope Calculator</title>
+    <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet'>
+    <link href="../navstyling.css" rel="stylesheet" type="text/css">
+  </head>
+	<body>
+    <ul>
+      <li id="main"><a href="../Calculators Main Site.html">Calculators</a></li>
+      <li id="super"><a href="../Super-Calculator.html">Super Calculator</a></li>
+      <li class="dropdown">
+        <a href="" class="dropbtn">Math</a>
+        <div class="dropdown-content">
+          <a href="./Pythagorean.html">Pythagorean Theorem</a>
+          <a href="./Quadratic.html">Quadratic Equation</a>
+          <a href="./Midpoint.html">Midpoint Formula</a>
+          <a href="./Distance.html">Distance Formula</a>
+          <a href="./Slope.html">Slope Formula</a>
+          <a href="./RadianDegree.html">Degree-Radian</a>
+          <a href="./PercentChange.html">Percent Change</a>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <a href="" class="dropbtn">Science</a>
+        <div class="dropdown-content">
+          <a href="../Science/SolutePot.html">Solute Potential</a>
+        </div>
+      </li>
+    </ul>
+		<div id="calculator">
+			<header>
+				<h1>Percent Change Calculator</h1>
+        <p>The Percent Change calculator shows the change in percent.</p>
+        <p>((x<sub>2</sub> - x<sub>1</sub>) / x<sub>1</sub>) * 100</p>
+        <p>Where x<sub>1</sub> &#8800 0</p>
+			</header>
+			<div class="input-area">
+		  	<h2>Step 1: Enter x<sub>1</sub></h2>
+				<input type="number" id="o" value="2">
+			</div>
+					
+			<div class="input-area">
+		  	<h2>Step 2: Enter x<sub>2</sub></h2>
+				<input type="number" id="n" value="5">
+			</div>
+			
+			<div class="input-area">
+			  <h2>Step 5: Click the Button to receive change</h2>
+			  <input type="submit" id="submit" value="%">
+			</div>
+      <hr>
+      
+			<div class="output-area">
+        <h2>Output</h2>
+        
+			  <h3>Operation</h3>
+        <span id="final-operation"></span>			
+        
+			  <h3>Return Value:</h3>
+			  <span id="result"></span>
+      </div>
+    </div>
+    
+		<script>
+		//when the button is clicked
+		document.getElementById("submit").addEventListener("click",calculateIt);
+
+		function calculateIt() {
+
+			//create some variables
+      let o, n, d, pd;
+			
+      //get the values
+      o = document.getElementById("o").value;
+      n = document.getElementById("n").value;
+      
+      if (o == 0) {
+        alert("Error: x1 cannot be 0");
+
+        console.log("Error: x1 = 0");
+
+        //display the operation
+        document.getElementById("final-operation").innerHTML = "x<sub>1</sub> = 0";
+
+        //display the return value
+        document.getElementById("result").innerHTML = "Error: x<sub>1</sub> cannot be 0";
+      } else {
+        //calculates change
+        d = (n - o) / o;
+        pd = d * 100
+        console.log(d, pd);
+
+        //display the operation
+        document.getElementById("final-operation").innerHTML = `
+          ((${n} - ${o}) / ${o}) * 100 <br>
+          ((${n - o}) / ${o}) * 100 <br>
+          ${(n - o) / o} * 100
+        `;
+        
+        //display the return value
+        document.getElementById("result").innerHTML = `${pd}%`;
+      }
+		};
+		</script>
+	</body>
+</html>

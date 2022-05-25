@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Solute Potential Calculator</title>
+    <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet'>
+    <link href="../navstyling.css" rel="stylesheet" type="text/css">
+  </head>
+	<body>
+    <ul>
+      <li id="main"><a href="../Calculators Main Site.html">Calculators</a></li>
+      <li id="super"><a href="../Super-Calculator.html">Super Calculator</a></li>
+      <li class="dropdown">
+        <a href="" class="dropbtn">Math</a>
+        <div class="dropdown-content">
+          <a href="../Math/Pythagorean.html">Pythagorean Theorem</a>
+          <a href="../Math/Quadratic.html">Quadratic Equation</a>
+          <a href="../Math/Midpoint.html">Midpoint Formula</a>
+          <a href="../Math/Distance.html">Distance Formula</a>
+          <a href="../Math/Slope.html">Slope Formula</a>
+          <a href="../Math/RadianDegree.html">Degree-Radian</a>
+          <a href="../Math/PercentChange.html">Percent Change</a>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <a href="" class="dropbtn">Science</a>
+        <div class="dropdown-content">
+          <a href="./SolutePot.html">Solute Potential</a>
+        </div>
+      </li>
+    </ul>
+		<div id="calculator">
+			<header>
+				<h1>Solute Potential Calculator</h1>
+        <p>The Soulute Potential calculator calculates the solute potential of a solution, where:</p>
+        <p>i = ionization constant</p>
+        <p>C = molar concentration</p>
+        <p>R = Pressure Constant (0.0831 liter moles/bar K)</p>
+        <p>T = Temperature in Kelvin (&deg;C + 273)</p>
+        <p>&Psi;<sub>s</sub> = -iCRT</p>
+			</header>
+			<div class="input-area">
+		  	<h2>Step 1: Enter i</h2>
+				<input type="number" id="i" value="1">
+			</div>
+					
+			<div class="input-area">
+		  	<h2>Step 2: Enter C</h2>
+				<input type="number" id="C" value="5">
+			</div>
+      
+			<div class="input-area">
+		  	<h2>Step 3: Enter T</h2>
+				<input type="number" id="T" value="273">
+      </div>
+			
+			<div class="input-area">
+			  <h2>Step 4: Click the Button to receive solute potential</h2>
+			  <input type="submit" id="submit" value="&Psi;s">
+			</div>
+      <hr>
+      
+			<div class="output-area">
+        <h2>Output</h2>
+        
+			  <h3>Operation</h3>
+        <span id="final-operation"></span>			
+        
+			  <h3>Return Value:</h3>
+			  <span id="result"></span>
+      </div>
+    </div>
+    
+		<script>
+		//when the button is clicked
+		document.getElementById("submit").addEventListener("click",calculateIt);
+
+		function calculateIt() {
+
+			//create some variables
+      let i, c, t, ps;
+      const r = 0.0831; //pressure constant
+			
+      //get the values
+      i = document.getElementById("i").value;
+      c = document.getElementById("C").value;
+      t = document.getElementById("T").value;
+      
+      
+      //calculates slope
+      ps = -(i * c * r * t);
+
+			//display the operation
+      document.getElementById("final-operation").innerHTML = `
+        -(${i} * ${c} * ${r} * ${t})
+      `;
+			
+			//display the return value
+			document.getElementById("result").innerHTML = `${ps} bars`;
+		};
+		</script>
+	</body>
+</html>

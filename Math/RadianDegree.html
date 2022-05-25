@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Degree-Radian Coverter</title>
+    <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet'>
+    <link href="../navstyling.css" rel="stylesheet" type="text/css">
+  </head>
+	<body>
+    <ul>
+      <li id="main"><a href="../Calculators Main Site.html">Calculators</a></li>
+      <li id="super"><a href="../Super-Calculator.html">Super Calculator</a></li>
+      <li class="dropdown">
+        <a href="" class="dropbtn">Math</a>
+        <div class="dropdown-content">
+          <a href="./Pythagorean.html">Pythagorean Theorem</a>
+          <a href="./Quadratic.html">Quadratic Equation</a>
+          <a href="./Midpoint.html">Midpoint Formula</a>
+          <a href="./Distance.html">Distance Formula</a>
+          <a href="./Slope.html">Slope Formula</a>
+          <a href="./RadianDegree.html">Degree-Radian</a>
+          <a href="./PercentChange.html">Percent Change</a>
+        </div>
+      </li>
+
+      <li class="dropdown">
+        <a href="" class="dropbtn">Science</a>
+        <div class="dropdown-content">
+          <a href="../Science/SolutePot.html">Solute Potential</a>
+        </div>
+      </li>
+    </ul>
+		<div id="calculator">
+			<header>
+				<h1>Degree-Radian Converter</h1>
+				<p>The Degree-Radian Converter converts one type to another</p>
+			</header>
+			<div class="input-area">
+		  	<h2>Step 1: Enter the desired number</h2>
+				<input type="number" id="operand" value="90" />
+			</div>
+
+			<div class="input-area">
+		  	<h2>Step 2: Choose the Type of Number</h2>
+				<div class="operator-choices">
+		  		<input type="radio" name="operator" value="degree" checked>Degree&nbsp;
+		  		<input type="radio" name="operator" value="radian">Radian&nbsp;
+
+				</div>
+			</div>
+
+			<div class="input-area">
+		  	<h2>Step 3: Click the Button</h2>
+			  <input type="submit" id="submit" value="Convert">
+			</div>
+		  <hr>
+			<div class="output-area">
+			<h2>Output</h2>
+		 
+			<h3>Operation</h3>
+			<span id="final-operation"></span>
+			
+			<h3>Return Value:</h3>
+			<span id="result"></span>
+      </div>
+		</div>
+		<script>
+		//when the button is clicked
+		document.getElementById("submit").addEventListener("click",calculateIt);
+
+		function calculateIt() {
+
+			//create some variables
+			let returnValue, from;
+      const pi = Math.PI;
+			
+			//get the operand value
+			from = document.getElementById("operand").value;
+
+
+      //get the operator
+      let radios = document.getElementsByName('operator');
+
+      //loop
+      for (let i = 0, len = radios.length; i < len; i++) {
+        if (radios[i].checked) {
+          switch (radios[i].value) {
+            case "degree":
+              returnValue = from * (pi / 180);
+
+              //display the operation
+              document.getElementById("final-operation").innerHTML = `${from} * (&pi; / 180)`;
+
+              //display the return value
+              document.getElementById("result").innerHTML = returnValue;
+              break;
+            case "radian":
+              returnValue = from * (180 / pi);
+
+              //display the operation
+              document.getElementById("final-operation").innerHTML = `${from} * (180 / &pi;)`;
+
+              //display the return value
+              document.getElementById("result").innerHTML = returnValue;
+              break;
+          }
+
+          break;
+        }
+      }
+		};
+		</script>
+	</body>
+</html>
